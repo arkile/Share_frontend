@@ -45,7 +45,7 @@ import { AgmCoreModule } from '@agm/core';
     HttpClientModule,
     MatToolbarModule,
     AgmCoreModule.forRoot({
-      apiKey: 'GOOGLE API KEY',
+      apiKey: 'AIzaSyD33qVy5a6qC8Dn7lKfNQjznR5QPenevGU',
       libraries: ['places']
     })
   ],

@@ -1,0 +1,27 @@
+<p>proposition works!</p>
+<div class="whole_prop">
+  <div>
+    <mat-card class="view_prop_card">
+      <img>
+      <mat-card-header>
+        <mat-card-title>{{proposition.name}}</mat-card-title>
+        <mat-card-subtitle>Створено: {{proposition.createDate}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p></p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div>
+      <agm-map [latitude]="lat"  [longitude]="lng">
+        <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+      </agm-map>
+  </div>
+</div>
+<!--<div>-->
+<!--  <label>name:-->
+<!--    <input [(ngModel)]="proposition.name" placeholder="name"/>-->
+<!--  </label>-->
+<!--</div>-->
+<!--<div><span>create date: </span>{{proposition.createDate}}</div>-->
+<!--<div><span>author id: </span>{{proposition.authorId}}</div>-->
