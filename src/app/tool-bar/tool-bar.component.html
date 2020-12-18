@@ -1,0 +1,9 @@
+<mat-toolbar color="primary">
+  <button mat-flat-button color="primary" routerLink="/main-page"> ГОЛОВНА </button>
+  <span class="gap"></span>
+  <button *ngIf="!authService.isAuthorized()" mat-flat-button color="primary" routerLink="/login">ВХІД</button>
+  <button *ngIf="!authService.isAuthorized()" mat-flat-button color="primary" routerLink="/registration">РЕЄСТРАЦІЯ</button>
+  <button *ngIf="authService.isAuthorized()" mat-flat-button color="primary" routerLink="/new-proposition">СТВОРИТИ ПРОПОЗИЦІЮ</button>
+  <button *ngIf="authService.isAuthorized()" mat-flat-button color="primary" (click)="authService.logOut()">ВИЙТИ</button>
+
+</mat-toolbar>
