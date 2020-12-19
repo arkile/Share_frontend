@@ -1,7 +1,7 @@
 export class PropositionModel {
   id: number;
   name: string;
-  createDate: number;
+  createDate: string;
   authorId: number;
   status: number;
   images: [];
