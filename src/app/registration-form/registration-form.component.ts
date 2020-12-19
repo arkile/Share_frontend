@@ -51,7 +51,7 @@ export class RegistrationFormComponent implements OnInit {
     this.registrationForm.controls.phoneNumber.disable();
     this.registrationForm.controls.password.disable();
     this.messageService.register(registrationData).subscribe(data => {
-      localStorage.setItem('token', data.accessToken);
+      sessionStorage.setItem('token', data.accessToken);
       console.log('user registered');
     },
       error => {

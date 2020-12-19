@@ -1,5 +1,6 @@
 export class NewProposition {
   name: string;
-  images: [];
   description: string;
+  location: [number, number];
+  images: [];
 }

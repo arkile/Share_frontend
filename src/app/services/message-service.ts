@@ -4,6 +4,10 @@ import {Router} from '@angular/router';
 import {RegistrationModel} from '../models/registration-model';
 import {TokenModel} from '../models/token-model';
 import {LoginModel} from '../models/login-model';
+import {PropositionsListModel} from '../models/propositions-list-model';
+import {ListRequestModel} from '../models/list-request-model';
+import {PropositionRequest} from '../models/proposition-request';
+import {PropositionModel} from '../models/proposition';
 
 
 @Injectable({
@@ -12,6 +16,8 @@ import {LoginModel} from '../models/login-model';
 export class MessageService {
   private registerURL = 'http://localhost:5000/register';
   private loginURL = 'http://localhost:5000/login';
+  private mainURL = 'http://localhost:5000/main';
+  private propositionURL = 'http://localhost:5000/view-proposition';
 
   public loggedIn = false;
 
@@ -28,16 +34,28 @@ export class MessageService {
   }
 
   logOut(): void{
-    localStorage.setItem('token', '');
+    sessionStorage.setItem('token', '');
     this.loggedIn = false;
     this.router.navigate(['/main-page']);
   }
 
+  // tslint:disable-next-line:typedef
+  loadPropositions(listRequest: ListRequestModel) {
+    return this.http.post<PropositionsListModel>(this.mainURL, listRequest);
+  }
+
+  // tslint:disable-next-line:typedef
+  loadOneProposition(propositionRequest: PropositionRequest) {
+    return this.http.post<PropositionModel>(this.propositionURL, propositionRequest);
+  }
+
   isAuthorized(): boolean{
-    const x = localStorage.getItem('token');
-    if (x === 'undefined'){
+    const x = sessionStorage.getItem('token');
+    if (x === 'undefined' || x === '' || x === null){
+      console.log('unauthorized access');
       return false;
     }
+    console.log('authorized access: ' + x);
     return true;
   }
 }

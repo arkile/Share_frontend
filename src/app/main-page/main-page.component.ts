@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {PROPOSITIONS} from '../mock-propositions';
 import {Router} from '@angular/router';
 import {PropositionModel} from '../models/proposition';
+import {MessageService} from '../services/message-service';
+import {ListRequestModel} from '../models/list-request-model';
 
 
 @Component({
@@ -13,20 +15,39 @@ export class MainPageComponent implements OnInit {
 
   propositions = PROPOSITIONS;
   listSize = 5;
+  defaultLocation = [37, 77];
+  location = this.defaultLocation;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private messageService: MessageService) { }
 
   ngOnInit(): void {
     // this.loadPropositions();
   }
 
-  view_proposition(proposition: PropositionModel): void {
-    this.router.navigate(['/view-proposition']);
-    console.warn('Finish this');
+  view_proposition(proposition: PropositionModel, propId: number): void {
+    this.router.navigate(['/view-proposition'], {
+      queryParams: {
+        viewId: propId
+      }
+    }).then(nav => {
+      console.log(nav);
+    }, error => {
+      console.log(error);
+    });
   }
 
   private loadPropositions(): void {
-    console.warn('Finish this');
+    const requestData = {
+      location: this.location
+    } as ListRequestModel;
+    console.warn('loading');
+    this.messageService.loadPropositions(requestData).subscribe(data => {
+      this.propositions = data.propositions;
+      console.log('data loaded');
+    }, error => {
+      console.warn('Loading propositions failed');
+      console.warn(error);
+    });
   }
 
 }

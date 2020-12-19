@@ -1,7 +1,7 @@
 <div class="propositions">
   <h1 class="main-menu-h1">Пропозиції</h1>
   <div class="proposition" *ngFor="let proposition of propositions">
-    <mat-card class="proposition-card"  (click)="view_proposition(proposition)">
+    <mat-card class="proposition-card"  (click)="view_proposition(proposition, proposition.id)">
       <mat-card-header>
         <div mat-card-avatar class="header-image"></div>
         <mat-card-title class="mat-h1">{{proposition.name}}</mat-card-title>

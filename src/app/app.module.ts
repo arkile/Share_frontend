@@ -45,7 +45,7 @@ import { AgmCoreModule } from '@agm/core';
     HttpClientModule,
     MatToolbarModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyD33qVy5a6qC8Dn7lKfNQjznR5QPenevGU',
+      apiKey: '28cfd6d0bd714b92a8b560b4b0c396d1',
       libraries: ['places']
     })
   ],

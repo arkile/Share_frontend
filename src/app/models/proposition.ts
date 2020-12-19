@@ -3,7 +3,10 @@ export class PropositionModel {
   name: string;
   createDate: string;
   authorId: number;
-  status: number;
-  images: [];
   description: string;
+  status: number;
+  location: [number, number];
+  images: [];
+  authorName: string;
+  authorPhoneNumber: string;
 }

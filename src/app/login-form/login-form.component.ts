@@ -46,7 +46,7 @@ export class LoginFormComponent implements OnInit {
     this.loginForm.controls.email.disable();
     this.loginForm.controls.password.disable();
     this.messageService.login(loginData).subscribe(data => {
-      localStorage.setItem('token', data.accessToken);
+      sessionStorage.setItem('token', data.accessToken);
       this.messageService.loggedIn = true;
       this.router.navigate(['/']);
       console.warn('LOGIN SUCCEEDED');

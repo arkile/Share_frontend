@@ -1,5 +1,7 @@
 <div class="proposition-status">
-  <p>Статус: пропозиція актуальна</p>
+  <p *ngIf="isActive()">Статус: пропозиція актуальна</p>
+  <p *ngIf="!isActive()">Статус: пропозиція вже прийнята</p>
+<!--  <p *ngIf="!(status == 1) && !(status == 2)">Статус: пропозиція недоступна для прийняття</p>-->
 </div>
 <div class="whole_prop">
   <div>
@@ -15,12 +17,12 @@
           <div class="overlay">
             <div class="proposition-author">
               <div mat-card-avatar class="header-image"></div>
-              <p> Андрій </p>
+              <p>{{proposition.authorName}} </p>
             </div>
             <div class="text"> Контактна інформація: +380 (44) 255–70–42 </div>
           </div>
         </div>
-        <p> $ Бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла $ </p>
+        <p> {{proposition.description}} </p>
         <div>
           <agm-map [latitude]="lat"  [longitude]="lng">
             <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
