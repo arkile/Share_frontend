@@ -1,16 +1,68 @@
 .propositions {
-  margin-top: 5%;
-  margin-right: 10%;
-  margin-left: 10%;
+  margin: 5% 10% 20px;
+
 }
 
 .main-menu-h1 {
-  margin-left: auto;
-  margin-right: auto;
+  margin: 40px auto;
   font-size: 250%;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #3F51B5;
+  font-weight: 900;
+}
+.mat-card-title{
+  font-size: 18px;
 }
 
 .proposition-card {
   margin-top: 10px;
   min-height: 200px;
+  box-shadow: 1px 1px 5px #3F51B5;
+  cursor:pointer;
 }
+.mat-card-image{
+  margin-top: 5px;
+  min-height: 200px;
+  max-width: 200px;
+  text-align: left;
+
+  font-size: 12px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 24px;
+  padding-left: 24px;
+
+}
+.mat-card-text{
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 24px;
+  padding-left: 24px;
+  margin-top: 5px;
+  vertical-align: middle;
+  text-align: center;
+}
+.mat-card-content{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /*display: inline;*/
+  /*float: right;*/
+}
+.mat-card-text {
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 24px;
+  padding-left: 24px;
+  margin-top: 5px;
+  vertical-align: middle;
+  text-align: center;
+  display: inline;
+  float: right;
+}
+.header-image {
+  background-image: url('https://telegra.ph/file/e777c1528f4d7d595a6db.jpg');
+  background-size: cover;
+}
+

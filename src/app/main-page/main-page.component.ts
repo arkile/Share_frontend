@@ -3,6 +3,7 @@ import {PROPOSITIONS} from '../mock-propositions';
 import {Router} from '@angular/router';
 import {PropositionModel} from '../models/proposition';
 
+
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
@@ -29,3 +30,4 @@ export class MainPageComponent implements OnInit {
   }
 
 }
+

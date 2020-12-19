@@ -1,4 +1,6 @@
-<p>proposition works!</p>
+<div class="proposition-status">
+  <p>Статус: пропозиція актуальна</p>
+</div>
 <div class="whole_prop">
   <div>
     <mat-card class="view_prop_card">
@@ -8,15 +10,30 @@
         <mat-card-subtitle>Створено: {{proposition.createDate}}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
-        <p></p>
+        <div class="container">
+          <img mat-card-image src="https://cdn.shopify.com/s/files/1/0806/0141/products/KALA-LTP-MH-KIT_1024x1024.jpg?v=1571914470" alt="Photo of a proposition`s author">
+          <div class="overlay">
+            <div class="proposition-author">
+              <div mat-card-avatar class="header-image"></div>
+              <p> Андрій </p>
+            </div>
+            <div class="text"> Контактна інформація: +380 (44) 255–70–42 </div>
+          </div>
+        </div>
+        <p> $ Бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла бла $ </p>
+        <div>
+          <agm-map [latitude]="lat"  [longitude]="lng">
+            <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+          </agm-map>
+        </div>
       </mat-card-content>
     </mat-card>
   </div>
-  <div>
-      <agm-map [latitude]="lat"  [longitude]="lng">
-        <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
-      </agm-map>
-  </div>
+<!--  <div>-->
+<!--      <agm-map [latitude]="lat"  [longitude]="lng">-->
+<!--        <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>-->
+<!--      </agm-map>-->
+<!--  </div>-->
 </div>
 <!--<div>-->
 <!--  <label>name:-->
