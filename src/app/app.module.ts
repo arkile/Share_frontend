@@ -20,6 +20,7 @@ import {AuthInterceptor} from './services/auth-interceptor';
 import { ToolBarComponent } from './tool-bar/tool-bar.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { AgmCoreModule } from '@agm/core';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
@@ -45,9 +46,10 @@ import { AgmCoreModule } from '@agm/core';
     HttpClientModule,
     MatToolbarModule,
     AgmCoreModule.forRoot({
-      apiKey: '28cfd6d0bd714b92a8b560b4b0c396d1',
+      apiKey: 'AIzaSyDsBOs-j-XUNflceYWnX9XnxySXhwToVNQ',
       libraries: ['places']
-    })
+    }),
+    MatGridListModule
   ],
   providers: [
     {

@@ -24,6 +24,10 @@ export class PropositionFormComponent implements OnInit {
   lat = 50.408955;
   lon = 30.549316;
 
+  imageUrl = 'https://via.placeholder.com/480x320?text=Add+your+image+here';
+
+  fileName = 'No file selected';
+
   constructor(private formBuilder: FormBuilder, private messageService: MessageService, private router: Router) { }
 
   ngOnInit(): void {
@@ -59,6 +63,28 @@ export class PropositionFormComponent implements OnInit {
       this.createForm.controls.name.enable();
       this.createForm.controls.description.enable();
       this.router.navigate(['main-page']);
+    });
+  }
+
+  // tslint:disable-next-line:typedef
+  private findMe() {
+    navigator.permissions.query(
+      {name: 'geolocation'}
+    ).then(permissionStatus => {
+      if (permissionStatus.state === 'granted'){
+        if (navigator.geolocation) {
+          // this.permissionGranted = true;
+          navigator.geolocation.getCurrentPosition((position) => {
+            this.lat = position.coords.latitude;
+            this.lon = position.coords.longitude;
+          });
+        } else {
+          alert('Geolocation is not supported by this browser.');
+        }
+      }
+      else{
+        // this.permissionGranted = false;
+      }
     });
   }
 

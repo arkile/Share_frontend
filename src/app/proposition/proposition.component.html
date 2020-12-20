@@ -6,7 +6,7 @@
 <div class="whole_prop">
   <div>
     <mat-card class="view_prop_card">
-      <img>
+<!--      <img>-->
       <mat-card-header>
         <mat-card-title>{{proposition.name}}</mat-card-title>
         <mat-card-subtitle>Створено: {{proposition.createDate}}</mat-card-subtitle>
@@ -24,8 +24,8 @@
         </div>
         <p> {{proposition.description}} </p>
         <div>
-          <agm-map [latitude]="proposition.location[0]"  [longitude]="proposition.location[0]">
-            <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+          <agm-map [latitude]="proposition.location[0]"  [longitude]="proposition.location[1]">
+            <agm-marker [latitude]="proposition.location[0]" [longitude]="proposition.location[1]"></agm-marker>
           </agm-map>
         </div>
       </mat-card-content>

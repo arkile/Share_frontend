@@ -1,11 +1,10 @@
 .prop-outer-div {
-  display: flex;
-  align-items: stretch;
-  /*height: 100%;*/
-  margin: 5% 15% 0 15%;
-  border: 2px solid rgba(0,0,0,.2);
-  border-radius: 5px;
-  padding-top: 5%;
+  /*display: flex;*/
+  /*align-items: stretch;*/
+  /*!*height: 100%;*!*/
+  /*margin: 5% 10% 0 10%;*/
+  /*border: 2px solid rgba(0,0,0,.2);*/
+  /*border-radius: 5px;*/
   background-color: white;
 }
 
@@ -35,8 +34,19 @@
 }
 
 agm-map {
-  height: 300px;
-  width: 300px;
+  height: 250px;
+  width: 100%;
+  min-width: 300px;
 }
+
+.map-class {
+  margin-top: 2%;
+  float: right;
+}
+
+.left-col-div {
+  display: grid;
+}
+
 
 
