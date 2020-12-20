@@ -8,6 +8,8 @@ import {PropositionsListModel} from '../models/propositions-list-model';
 import {ListRequestModel} from '../models/list-request-model';
 import {PropositionRequest} from '../models/proposition-request';
 import {PropositionModel} from '../models/proposition';
+import {NewPropositionModel} from '../models/new-proposition';
+import {ResponseMessageModel} from '../models/ResponseMessageModel';
 
 
 @Injectable({
@@ -17,7 +19,8 @@ export class MessageService {
   private registerURL = 'http://localhost:5000/register';
   private loginURL = 'http://localhost:5000/login';
   private mainURL = 'http://localhost:5000/main';
-  private propositionURL = 'http://localhost:5000/view-proposition';
+  private propositionURL = 'http://localhost:5000/view_proposition';
+  private createPropositionURL = 'http://localhost:5000/create_proposition';
 
   public loggedIn = false;
 
@@ -49,13 +52,16 @@ export class MessageService {
     return this.http.post<PropositionModel>(this.propositionURL, propositionRequest);
   }
 
+  // tslint:disable-next-line:typedef
+  createProposition(newPropositionModel: NewPropositionModel) {
+    return this.http.post<ResponseMessageModel>(this.createPropositionURL, newPropositionModel);
+  }
+
   isAuthorized(): boolean{
     const x = sessionStorage.getItem('token');
     if (x === 'undefined' || x === '' || x === null){
-      console.log('unauthorized access');
       return false;
     }
-    console.log('authorized access: ' + x);
     return true;
   }
 }

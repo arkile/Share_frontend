@@ -24,8 +24,8 @@ export class PropositionComponent implements OnInit {
       this.activatedRoute.queryParams.subscribe(params => {
         this.viewId = params.viewId;
       });
-      this.proposition = PROPOSITIONS[this.viewId - 1];
-
+      // this.proposition = PROPOSITIONS[this.viewId - 1];
+      this.loadProposition();
       // console.warn(sessionStorage.getItem('token'));
   }
 

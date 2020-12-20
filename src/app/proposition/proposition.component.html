@@ -24,7 +24,7 @@
         </div>
         <p> {{proposition.description}} </p>
         <div>
-          <agm-map [latitude]="lat"  [longitude]="lng">
+          <agm-map [latitude]="proposition.location[0]"  [longitude]="proposition.location[0]">
             <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
           </agm-map>
         </div>

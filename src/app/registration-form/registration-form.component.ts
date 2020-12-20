@@ -53,6 +53,7 @@ export class RegistrationFormComponent implements OnInit {
     this.messageService.register(registrationData).subscribe(data => {
       sessionStorage.setItem('token', data.accessToken);
       console.log('user registered');
+      this.router.navigate(['main-page']);
     },
       error => {
         console.warn('REGISTRATION FAILED');

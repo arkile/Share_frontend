@@ -10,7 +10,7 @@
     </mat-form-field>
     <mat-form-field class="prop-form-field" appearance="fill">
       <mat-label>Детальний опис товару</mat-label>
-      <textarea matInput cdkTextareaAutosize [errorStateMatcher]="errorStateMatcher" placeholder="Розмір М, стан 3/5, аренда до тижня"></textarea>
+      <textarea matInput cdkTextareaAutosize formControlName="description" [errorStateMatcher]="errorStateMatcher" placeholder="Розмір М, стан 3/5, аренда до тижня"></textarea>
     </mat-form-field>
     <button mat-raised-button class="prop-form-button" color="primary">Готово</button>
   </form>

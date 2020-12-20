@@ -15,13 +15,13 @@ export class MainPageComponent implements OnInit {
 
   propositions = PROPOSITIONS;
   listSize = 5;
-  defaultLocation = [37, 77];
+  defaultLocation = [50, 30];
   location = this.defaultLocation;
 
   constructor(private router: Router, private messageService: MessageService) { }
 
   ngOnInit(): void {
-    // this.loadPropositions();
+    this.loadPropositions();
   }
 
   view_proposition(proposition: PropositionModel, propId: number): void {
@@ -43,6 +43,7 @@ export class MainPageComponent implements OnInit {
     console.warn('loading');
     this.messageService.loadPropositions(requestData).subscribe(data => {
       this.propositions = data.propositions;
+      console.log(data.size);
       console.log('data loaded');
     }, error => {
       console.warn('Loading propositions failed');
