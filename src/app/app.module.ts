@@ -20,7 +20,7 @@ import {AuthInterceptor} from './services/auth-interceptor';
 import { ToolBarComponent } from './tool-bar/tool-bar.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { AgmCoreModule } from '@agm/core';
-import { MatGridListModule} from '@angular/material/grid-list';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [
