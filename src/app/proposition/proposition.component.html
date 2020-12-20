@@ -36,10 +36,9 @@
 
 <mat-grid-list class="whole_prop" cols="2">
 
-<!--  <mat-grid-tile [colspan]="1" class="proposition-image" >-->
   <mat-grid-tile [colspan]="1" class="left-column" >
-    <mat-card>
-      <mat-card-content>
+    <mat-card class="left-column-mat-card">
+      <mat-card-content class="left-column-components">
         <img mat-card-image class="proposition-image" [src]="file" alt="Photo of a proposition`s author">
         <p> {{proposition.description}} </p>
       </mat-card-content>
