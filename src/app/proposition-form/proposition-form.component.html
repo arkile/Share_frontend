@@ -3,7 +3,7 @@
     <h1 class="prop-form-h1">Створити нову пропозицію</h1>
     <mat-form-field class="prop-form-field" appearance="fill">
       <mat-label>Коротка назва предмету чи послуги</mat-label>
-      <input matInput type="text" formControlName="name" [errorStateMatcher]="errorStateMatcher" placeholder="плащ хокаге">
+      <input matInput type="text" formControlName="name" [errorStateMatcher]="errorStateMatcher" placeholder="Плащ хокаге">
       <mat-error *ngIf="createForm.get('name').hasError('required')">
         Назва обов'язкова!
       </mat-error>

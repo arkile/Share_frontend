@@ -1,30 +1,18 @@
-.proposition-status{
-  margin: 10px 30px auto;
-  letter-spacing: 2px;
-  color: #3F51B5;
-}
 
-agm-map {
-  height: 300px;
-  width: 300px;
-  margin: 10px 30px;
+/*.mat-card-content{*/
+/*  display: flex;*/
+/*  justify-content: left;*/
+/*  align-items: center;*/
+/*  min-height: 400px;*/
+/*  box-shadow: 1px 1px 5px #3F51B5;*/
+/*}*/
 
-}
-
-.mat-card-content{
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  min-height: 400px;
-  box-shadow: 1px 1px 5px #3F51B5;
-}
-
-.mat-card-image{
-  margin: 10px 20px;
-  width: 190px;
-  height: 260px;
-  display: block;
-}
+/*.mat-card-image{*/
+/*  !*margin: 10px 20px;*!*/
+/*  !*width: 190px;*!*/
+/*  !*height: 260px;*!*/
+/*  display: block;*/
+/*}*/
 .overlay {
   position: absolute;
   bottom: 0;
@@ -47,37 +35,123 @@ agm-map {
 }
 
 .text {
+
   white-space: nowrap;
   color: white;
-  font-size: 15px;
+  font-size: 75%;
   position: absolute;
   overflow: hidden;
-  top: 61%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
 
 }
-
-.proposition-author{
-  display: flex;
-  justify-content: left;
-  align-items: center;
+.text-phone{
+  margin: 0 0;
   text-transform: uppercase;
-  letter-spacing: 3px;
-  color: white;
-  font-weight: 900;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  position: absolute;
-  overflow: hidden;
-  top: 38%;
-  left: 45%;
 }
 
+.text-email{
+  margin: 0 0;
+  text-transform: uppercase;
+}
+
+.proposition-status{
+  margin: 10px 30px auto;
+  letter-spacing: 2px;
+  color: #3F51B5;
+}
+
+.whole_prop{
+  display: block;
+  justify-content: center;
+  /*align-items: stretch;*/
+  margin: 1% 10% 1% 10%;
+}
+
+.proposition-image{
+  margin-right: 20%;
+  margin-top: 5%;
+  /*display: block;*/
+  float: left;
+  position: relative;
+  background: url("https://cdn.shopify.com/s/files/1/0806/0141/products/KALA-LTP-MH-KIT_1024x1024.jpg?v=1571914470") content-box no-repeat center center;
+  background-size: cover;
+  height: 160px;
+  width: 160px;
+}
+
+.proposition-author{
+  display: block;
+  /*margin: 10% 25%;*/
+}
+.proposition-author-info{
+  display: flex;
+  text-transform: uppercase;
+}
 
 .header-image {
   background-image: url('https://telegra.ph/file/9fec62437a310388c6fd9.jpg');
   background-size: cover;
-  margin: 20px 20px;
+  /*margin: 1% 5%;*/
+  margin-top: 1px;
+  margin-bottom: 5px;
+
+}
+
+.user-info{
+  /*float: left;*/
+  width: 170%;
+
+}
+
+.info-h1{
+  font-size: 150%;
+  letter-spacing: 3px;
+  color: #3F51B5;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.share-text{
+  color: white;
+  font-size: 150%;
+  letter-spacing: 3px;
+  -webkit-text-stroke: 1px #3F51B5;
+  margin-left: 10px;
+  text-transform: uppercase;
+  font-weight: 900;
+}
+
+.mat-h1{
+  color: black;
+  font-size: 150%;
+}
+
+agm-map {
+  height: 200px;
+  width: 300px;
+  margin-bottom: .5px;
+}
+
+.map-container {
+  text-transform: uppercase;
+  width: 100%;
+}
+
+.right-column {
+  display: grid;
+}
+
+.right-column-container {
+  display: grid;
+}
+
+.user-share{
+  display: flex;
+}
+
+.left-column {
+  display: grid;
 }

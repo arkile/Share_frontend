@@ -13,14 +13,19 @@ import {ListRequestModel} from '../models/list-request-model';
 })
 export class MainPageComponent implements OnInit {
 
-  propositions = PROPOSITIONS;
+  propositions: PropositionModel[];
   listSize = 5;
-  defaultLocation = [50, 30];
+  dataLoaded = false;
+  defaultLocation =  [50.3413014, 30.5962901];
   location = this.defaultLocation;
+  permissionGranted = false;
+  myLat;
+  myLong;
 
   constructor(private router: Router, private messageService: MessageService) { }
 
   ngOnInit(): void {
+    this.findMe();
     this.loadPropositions();
   }
 
@@ -40,10 +45,9 @@ export class MainPageComponent implements OnInit {
     const requestData = {
       location: this.location
     } as ListRequestModel;
-    console.warn('loading');
     this.messageService.loadPropositions(requestData).subscribe(data => {
       this.propositions = data.propositions;
-      console.log(data.size);
+      this.dataLoaded = true;
       console.log('data loaded');
     }, error => {
       console.warn('Loading propositions failed');
@@ -51,5 +55,28 @@ export class MainPageComponent implements OnInit {
     });
   }
 
-}
+  private findMe(): void {
+    navigator.permissions.query(
+      {name: 'geolocation'}
+    ).then(permissionStatus => {
+      if (permissionStatus.state === 'granted' || permissionStatus.state === 'prompt'){
+        if (navigator.geolocation) {
+          this.permissionGranted = true;
+          navigator.geolocation.getCurrentPosition((position) => {
+            this.myLat = position.coords.latitude;
+            this.myLong = position.coords.longitude;
+          });
+        } else {
+          alert('Geolocation is not supported by this browser.');
+        }
+      }
+      else{
+        this.permissionGranted = false;
+        this.myLat = this.defaultLocation[0];
+        this.myLong = this.defaultLocation[1];
+      }
+    });
+    console.log(this.permissionGranted);
+  }
 
+}

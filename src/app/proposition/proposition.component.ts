@@ -15,7 +15,7 @@ export class PropositionComponent implements OnInit {
   proposition;
   viewId: number;
   lat = 12;
-
+  file = 'https://cdn.shopify.com/s/files/1/0806/0141/products/KALA-LTP-MH-KIT_1024x1024.jpg?v=1571914470';
   lng = 57;
 
     constructor(private activatedRoute: ActivatedRoute, private messageService: MessageService) { }

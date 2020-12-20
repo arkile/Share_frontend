@@ -1,18 +1,31 @@
 <div class="propositions">
-  <h1 class="main-menu-h1">Пропозиції</h1>
+  <div class="proposition-share">
+    <h1 class="main-menu-h1">Пропозиції</h1>
+    <h1 class="share-text">share</h1>
+  </div>
   <div class="proposition" *ngFor="let proposition of propositions">
     <mat-card class="proposition-card"  (click)="view_proposition(proposition, proposition.id)">
       <mat-card-header>
         <div mat-card-avatar class="header-image"></div>
-        <mat-card-title class="mat-h1">{{proposition.name}}</mat-card-title>
+        <mat-card-title class="mat-h1" >{{proposition.authorName}}</mat-card-title>
+<!--        <mat-card-title class="mat-h1">{{proposition.name}}</mat-card-title>-->
       </mat-card-header>
-
-      <mat-card-content>
-        <img mat-card-image src="https://cdn.shopify.com/s/files/1/0806/0141/products/KALA-LTP-MH-KIT_1024x1024.jpg?v=1571914470" alt="Photo of a proposition`s author">
-        <div mat-card-text>
-          <p>Дата створення: {{proposition.createDate}} </p>
-          <p>{{proposition.description}}</p>
+      <mat-card-content class="mat-card-components">
+        <div class="mat-card-img">
+<!--          <img mat-card-image class="mat-card-img" src="https://cdn.shopify.com/s/files/1/0806/0141/products/KALA-LTP-MH-KIT_1024x1024.jpg?v=1571914470">-->
         </div>
+        <div class="mat-card-description">
+          <h4>Дата створення: {{proposition.createDate}} </h4>
+          <mat-card-title class="mat-h1">{{proposition.name}}</mat-card-title>
+          <p class="mat-h4">{{proposition.description}}</p>
+          <p class="location-h1">Відстань від вашого місцезнаходження: 2 км</p>
+        </div>
+        <div>
+          <agm-map [latitude]="proposition.location[0]"  [longitude]="proposition.location[1]">
+            <agm-marker [latitude]="proposition.location[0]" [longitude]="proposition.location[1]"></agm-marker>
+          </agm-map>
+        </div>
+
       </mat-card-content>
     </mat-card>
   </div>

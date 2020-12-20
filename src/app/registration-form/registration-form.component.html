@@ -1,37 +1,39 @@
-<p>Реєструйся та долучайся до Share</p>
-<form class="reg-form" (ngSubmit)="onSubmit()" [formGroup]="registrationForm">
-  <mat-form-field class="reg-form-field" appearance="standard">
-    <mat-label>Ім'я та прізвище</mat-label>
-    <input matInput formControlName="name" type="text" placeholder="name surname">
-    <mat-error *ngIf="registrationForm.get('name').hasError('required')">
-      Ім'я обов'язкове!
-    </mat-error>
-  </mat-form-field>
-  <mat-form-field class="reg-form-field" appearance="standard">
-    <mat-label>Email</mat-label>
-    <input type="email" matInput formControlName="email" [errorStateMatcher]="errorMatcher" placeholder="email@example.com">
-    <mat-error *ngIf="registrationForm.get('email').hasError('email') && !registrationForm.get('email').hasError('required')">
-      Введіть коректну адресу
-    </mat-error>
-    <mat-error *ngIf="registrationForm.get('email').hasError('required')">
-      Email is <strong>required</strong>
-    </mat-error>
-  </mat-form-field>
-  <mat-form-field class="reg-form-field" appearance="standard">
-    <mat-label>phone number</mat-label>
-    <span matPrefix>+38 &nbsp;</span>
-    <input formControlName="phoneNumber" type="tel" matInput placeholder="0997779977">
-    <mat-icon matSuffix>mode_edit</mat-icon>
-  </mat-form-field>
-  <mat-form-field appearance="standard">
-    <mat-label>Enter your password</mat-label>
-    <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
-    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-    </button>
-    <mat-error *ngIf="registrationForm.get('password').hasError('required')">
-      Password is <strong>required</strong>
-    </mat-error>
-  </mat-form-field>
-  <button mat-raised-button [disabled]="!registrationForm.valid" disabled type="submit" color="primary">Зареєструвати мене</button>
-</form>
+<div class="registration-form">
+  <form class="reg-form" (ngSubmit)="onSubmit()" [formGroup]="registrationForm">
+    <div class="reg-text"><h1 class="registration-h1">Реєструйся та долучайся до</h1><h1 class="share-text">share</h1></div>
+    <mat-form-field class="reg-form-field" appearance="standard">
+      <mat-label>Ім'я та прізвище</mat-label>
+      <input matInput formControlName="name" type="text" placeholder="Name Surname">
+      <mat-error *ngIf="registrationForm.get('name').hasError('required')">
+        Ім'я обов'язкове!
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="reg-form-field" appearance="standard">
+      <mat-label>Email</mat-label>
+      <input type="email" matInput formControlName="email" [errorStateMatcher]="errorMatcher" placeholder="email@example.com">
+      <mat-error *ngIf="registrationForm.get('email').hasError('email') && !registrationForm.get('email').hasError('required')">
+        Введіть коректну адресу
+      </mat-error>
+      <mat-error *ngIf="registrationForm.get('email').hasError('required')">
+        Email is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="reg-form-field" appearance="standard">
+      <mat-label>phone number</mat-label>
+      <span matPrefix>+38 &nbsp;</span>
+      <input formControlName="phoneNumber" type="tel" matInput placeholder="0997779977">
+      <mat-icon mat-icon-button matSuffix>mode_edit</mat-icon>
+    </mat-form-field>
+    <mat-form-field class="reg-form-field" appearance="standard">
+      <mat-label>Enter your password</mat-label>
+      <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+      <mat-error *ngIf="registrationForm.get('password').hasError('required')">
+        Password is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <button class="reg-button" mat-raised-button [disabled]="!registrationForm.valid" disabled type="submit" color="primary">Зареєструвати мене</button>
+  </form>
+</div>

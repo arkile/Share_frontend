@@ -2,11 +2,13 @@
   display: flex;
   align-items: stretch;
   /*height: 100%;*/
-  margin: 5% 15% 0 15%;
-  border: 2px solid rgba(0,0,0,.2);
+  text-transform: uppercase;
+  margin: 1% 15% 1% 15%;
+  /*border: 2px solid rgba(0,0,0,.2);*/
   border-radius: 5px;
   padding-top: 5%;
   background-color: white;
+
 }
 
 .prop-form {
@@ -26,6 +28,9 @@
   margin-left: auto;
   margin-right: auto;
   font-size: 250%;
+  letter-spacing: 3px;
+  color: #3F51B5;
+  font-weight: 900;
 }
 
 .prop-form-button {
