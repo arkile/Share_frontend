@@ -24,6 +24,20 @@
           <mat-label>Детальний опис товару</mat-label>
           <textarea matInput cdkTextareaAutosize formControlName="description" [errorStateMatcher]="errorStateMatcher" placeholder="Розмір М, стан 3/5, аренда до тижня"></textarea>
         </mat-form-field>
+        <label class="file-label">
+          <input type="file" name="image_btn" accept=".png, .jpg, .jpeg" (change)="onChange($event.target.files)" />
+<!--          <span class="file-cta">-->
+<!--&lt;!&ndash;            <span class="file-icon">&ndash;&gt;-->
+<!--&lt;!&ndash;              <fa-icon [icon]="['fas', 'upload']"></fa-icon>&ndash;&gt;-->
+<!--&lt;!&ndash;            </span>&ndash;&gt;-->
+<!--            <span class="file-label">-->
+<!--              Обери файл…-->
+<!--            </span>-->
+<!--          </span>-->
+<!--          <span class="file-name">-->
+<!--            {{ fileName }}-->
+<!--          </span>-->
+        </label>
         <button mat-raised-button class="prop-form-button" color="primary">Готово</button>
       </form>
     </mat-grid-tile>

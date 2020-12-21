@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpResponse} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {RegistrationModel} from '../models/registration-model';
 import {TokenModel} from '../models/token-model';
@@ -10,6 +10,9 @@ import {PropositionRequest} from '../models/proposition-request';
 import {PropositionModel} from '../models/proposition';
 import {NewPropositionModel} from '../models/new-proposition';
 import {ResponseMessageModel} from '../models/ResponseMessageModel';
+import {AcceptPropositionModel} from '../models/accept-proposition-model';
+import {Observable, throwError} from 'rxjs';
+import {catchError} from 'rxjs/operators';
 
 
 @Injectable({
@@ -21,19 +24,35 @@ export class MessageService {
   private mainURL = 'http://localhost:5000/main';
   private propositionURL = 'http://localhost:5000/view_proposition';
   private createPropositionURL = 'http://localhost:5000/create_proposition';
+  private acceptPropositionURL = 'http://localhost:5000/accept_proposition';
 
   public loggedIn = false;
+  private httpOptions = {observe: 'response' as const};
 
   constructor(private http: HttpClient, private router: Router){}
 
   // tslint:disable-next-line:typedef
-  register(registerData: RegistrationModel){
-    return this.http.post<TokenModel>(this.registerURL, registerData);
+  handleError(error) {
+    if (error.error instanceof ErrorEvent) {
+      console.error('An error occurred:', error.error.message);
+      alert('Сталася помилка. Перезавантажте сайт');
+      this.logOut();
+    } else {
+      console.error(
+        `Сталася помилка сервера з кодом ${error.status}, ` +
+        ` текст: ${error.error}`);
+    }
+    return throwError('some shit');
   }
 
   // tslint:disable-next-line:typedef
-  login(loginData: LoginModel){
-    return this.http.post<TokenModel>(this.loginURL, loginData);
+  register(registerData: RegistrationModel): Observable<HttpResponse<TokenModel>> {
+    return this.http.post<TokenModel>(this.registerURL, registerData, this.httpOptions);
+  }
+
+  // tslint:disable-next-line:typedef
+  login(loginData: LoginModel): Observable<HttpResponse<TokenModel>> {
+    return this.http.post<TokenModel>(this.loginURL, loginData, this.httpOptions);
   }
 
   logOut(): void{
@@ -43,18 +62,31 @@ export class MessageService {
   }
 
   // tslint:disable-next-line:typedef
-  loadPropositions(listRequest: ListRequestModel) {
-    return this.http.post<PropositionsListModel>(this.mainURL, listRequest);
+  loadPropositions(listRequest: ListRequestModel): Observable<HttpResponse<PropositionsListModel>> {
+    return this.http.post<PropositionsListModel>(this.mainURL, listRequest, this.httpOptions);
   }
 
   // tslint:disable-next-line:typedef
-  loadOneProposition(propositionRequest: PropositionRequest) {
-    return this.http.post<PropositionModel>(this.propositionURL, propositionRequest);
+  // showLoadPropositionsResponse(listRequest: ListRequestModel){
+  //   return this.http.post<PropositionsListModel>(this.mainURL, listRequest, this.httpOptions);
+      // .pipe(
+      //   catchError(this.handleMenuError)
+      // );
+  // }
+
+  // tslint:disable-next-line:typedef
+  loadOneProposition(propositionRequest: PropositionRequest): Observable<HttpResponse<PropositionModel>>  {
+    return this.http.post<PropositionModel>(this.propositionURL, propositionRequest, this.httpOptions);
   }
 
   // tslint:disable-next-line:typedef
-  createProposition(newPropositionModel: NewPropositionModel) {
-    return this.http.post<ResponseMessageModel>(this.createPropositionURL, newPropositionModel);
+  createProposition(newPropositionModel: NewPropositionModel): Observable<HttpResponse<ResponseMessageModel>> {
+    return this.http.post<ResponseMessageModel>(this.createPropositionURL, newPropositionModel, this.httpOptions);
+  }
+
+  // tslint:disable-next-line:typedef
+  acceptProposition(acceptRequest: AcceptPropositionModel): Observable<HttpResponse<any>>  {
+    return this.http.post(this.acceptPropositionURL, acceptRequest, this.httpOptions);
   }
 
   isAuthorized(): boolean{

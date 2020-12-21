@@ -53,6 +53,7 @@
   display: block;
   justify-content: center;
   /*align-items: stretch;*/
+  /*width: 100%;*/
   margin: 1% 10% 1% 10%;
 }
 
@@ -61,10 +62,9 @@
   margin-top: 5%;
   float: left;
   position: relative;
-  background: url("https://cdn.shopify.com/s/files/1/0806/0141/products/KALA-LTP-MH-KIT_1024x1024.jpg?v=1571914470") content-box no-repeat center center;
-  background-size: cover;
-  height: 160px;
-  width: 160px;
+  /*height: 300px;*/
+  /*max-height: 500px;*/
+  width: 80%;
 }
 
 .proposition-author{
@@ -138,9 +138,17 @@ agm-map {
 }
 
 .left-column {
+  /*display: grid;*/
+}
+
+.left-column-div{
   display: grid;
 }
 
-.left-column-mat-card{
+mat-grid-tile {
+  /*overflow: visible;*/
+}
 
+.overall-view-div {
+  width: 100%;
 }

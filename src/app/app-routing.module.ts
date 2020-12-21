@@ -10,11 +10,13 @@ import {LoginFormComponent} from './login-form/login-form.component';
 
 const routes: Routes = [
   {path: '', component: MainPageComponent},
+  {path: 'main-menu', component: MainPageComponent},
   {path: 'main-page', component: MainPageComponent},
   {path: 'new-proposition', component: PropositionFormComponent},
   {path: 'view-proposition', component: PropositionComponent},
   {path: 'registration', component: RegistrationFormComponent},
-  {path: 'login', component: LoginFormComponent}
+  {path: 'login', component: LoginFormComponent},
+  // { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({

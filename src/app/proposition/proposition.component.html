@@ -34,44 +34,45 @@
 <!--  </div>-->
 <!--</div>-->
 
-<mat-grid-list class="whole_prop" cols="2">
+<div class="overall-view-div">
+  <mat-grid-list class="whole_prop" cols="2">
 
-  <mat-grid-tile [colspan]="1" class="left-column" >
-    <mat-card class="left-column-mat-card">
-      <mat-card-content class="left-column-components">
-        <img mat-card-image class="proposition-image" [src]="file" alt="Photo of a proposition`s author">
+    <mat-grid-tile [colspan]="1" class="left-column" >
+      <div class="left-column-div">
+        <img mat-card-image class="proposition-image" [src]="proposition.images" alt="Photo of a proposition`s author">
         <p> {{proposition.description}} </p>
-      </mat-card-content>
-    </mat-card>
-  </mat-grid-tile>
+      </div>
+    </mat-grid-tile>
 
-  <mat-grid-tile [colspan]="1" class="right-column">
-    <div class="right-column-container">
-      <div class="user-info">
-        <div class="user-share">
-          <h1 class="info-h1">Користувач</h1>
-          <h1 class="share-text">share</h1>
-        </div>
-        <div class="container">
-          <div mat-card-avatar class="header-image"></div>
-<!--          <h1 class="mat-h1" >{{proposition.authorName}}</h1>-->
-          <mat-card-title class="mat-h1" >{{proposition.authorName}}</mat-card-title>
-          <div class="overlay">
-            <div class="text">
-              <p class="text-phone">Телефон: +380 (44) 255–70–42 </p>
-              <p class="text-email">Email: @andrii.broos@gmail.com </p>
+    <mat-grid-tile [colspan]="1" class="right-column">
+      <div class="right-column-container">
+        <div class="user-info">
+          <div class="user-share">
+            <h1 class="info-h1">Користувач</h1>
+            <h1 class="share-text">share</h1>
+          </div>
+          <div class="container">
+            <div mat-card-avatar class="header-image"></div>
+            <!--          <h1 class="mat-h1" >{{proposition.authorName}}</h1>-->
+            <h1 class="mat-h1" >{{proposition.authorName}}</h1>
+            <div class="overlay">
+              <div class="text">
+                <p class="text-phone">Телефон: some number </p>
+                <p class="text-email">Email: some email </p>
+              </div>
             </div>
           </div>
         </div>
+        <div class="map-container">
+          <h3>Точна адреса</h3>
+          <agm-map [latitude]="proposition.location[0]"  [longitude]="proposition.location[1]">
+            <agm-marker [latitude]="proposition.location[0]" [longitude]="proposition.location[1]"></agm-marker>
+          </agm-map>
+        </div>
+        <button mat-raised-button class="accept-button" (click)="acceptProposition()" color="primary">Мені це потрібно</button>
       </div>
-      <div class="map-container">
-        <h3>Точна адреса</h3>
-        <agm-map [latitude]="proposition.location[0]"  [longitude]="proposition.location[1]">
-          <agm-marker [latitude]="proposition.location[0]" [longitude]="proposition.location[1]"></agm-marker>
-        </agm-map>
-      </div>
-    </div>
-  </mat-grid-tile>
-</mat-grid-list>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>
 
 

@@ -45,15 +45,27 @@ export class LoginFormComponent implements OnInit {
     } as LoginModel;
     this.loginForm.controls.email.disable();
     this.loginForm.controls.password.disable();
-    this.messageService.login(loginData).subscribe(data => {
+    this.messageService.login(loginData).subscribe(resp => {
+      const data = resp.body;
       sessionStorage.setItem('token', data.accessToken);
       this.messageService.loggedIn = true;
       this.router.navigate(['/']);
       console.warn('LOGIN SUCCEEDED');
-      console.warn(localStorage.getItem('token'));
+      console.log(localStorage.getItem('token'));
     }, error => {
-      console.warn('LOGIN FAILED');
-      console.warn(error);
+      console.warn('LOGIN FAILED: ');
+      switch (error.status){
+        case 404:
+          alert('Вказаний email не зареєстровано в базі. Перевірте введені дані та спробуйте ще раз');
+          break;
+        case 403:
+          alert('Невірно вказаний пароль. спробуйте ще раз');
+          break;
+        default:
+          console.error('Unexpected server response: ' + error);
+          alert('Сталася помилка сервера. Спробуйте пізніше');
+          this.router.navigate(['/main-page']);
+      }
       this.loginForm.controls.email.enable();
       this.loginForm.controls.password.enable();
     });

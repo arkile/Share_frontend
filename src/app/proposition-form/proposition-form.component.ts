@@ -24,9 +24,14 @@ export class PropositionFormComponent implements OnInit {
   lat = 50.408955;
   lon = 30.549316;
 
-  imageUrl = 'https://via.placeholder.com/480x320?text=Add+your+image+here';
+  imageUrl: string | ArrayBuffer = 'https://via.placeholder.com/480x320?text=Add+your+image+here';
 
-  fileName = 'No file selected';
+  progress: number;
+  infoMessage: any;
+  isUploading = false;
+  file: File;
+  fileName: string;
+
 
   constructor(private formBuilder: FormBuilder, private messageService: MessageService, private router: Router) { }
 
@@ -35,6 +40,24 @@ export class PropositionFormComponent implements OnInit {
       name: ['', Validators.required],
       description: ['', Validators.required]
     });
+  }
+
+  // tslint:disable-next-line:typedef
+  onChange(files) {
+    const file = files[0];
+    if (file) {
+      this.fileName = file.name;
+      this.file = file;
+
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+
+      reader.onload = event => {
+        this.imageUrl = reader.result;
+        // this.imageBytes = reader.result;
+        console.log(this.imageUrl);
+      };
+    }
   }
 
   // tslint:disable-next-line:typedef
@@ -49,19 +72,28 @@ export class PropositionFormComponent implements OnInit {
       name: this.createForm.get('name').value,
       description: this.createForm.get('description').value,
       location: [this.lat, this.lon],
-      images: []
+      images: this.imageUrl.toString()
     } as NewPropositionModel;
     this.createForm.controls.name.disable();
     this.createForm.controls.description.disable();
-    this.messageService.createProposition(createData).subscribe(data => {
-      alert('Пропозиція вдало створена!');
-      this.router.navigate(['/']);
-      console.log('proposition created');
+    this.messageService.createProposition(createData).subscribe(resp => {
+      if (resp.status === 200 || resp.status === 201) {
+        alert('Пропозиція вдало створена!');
+        this.router.navigate(['/']);
+        console.log('proposition created');
+      }
     }, error => {
-      console.warn('CREATING FAILED');
-      console.warn(error);
-      this.createForm.controls.name.enable();
-      this.createForm.controls.description.enable();
+      if (error.status === 403){
+        alert('Невірний аутентифікаційний код. Спробуйте ще раз');
+        this.messageService.logOut();
+      } else {
+        console.error(error.error + ', status: ' + error.status);
+        alert('Сталася помилка. спробуйте пізніше');
+        this.messageService.logOut();
+        console.warn('CREATING FAILED');
+      }
+      // this.createForm.controls.name.enable();
+      // this.createForm.controls.description.enable();
       this.router.navigate(['main-page']);
     });
   }

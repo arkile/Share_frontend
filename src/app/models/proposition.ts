@@ -6,7 +6,7 @@ export class PropositionModel {
   description: string;
   status: number;
   location: [number, number];
-  images: [];
+  images: string;
   authorName: string;
-  authorPhoneNumber: string;
+  // authorPhoneNumber: string;
 }

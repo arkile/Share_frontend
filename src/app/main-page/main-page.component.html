@@ -18,7 +18,7 @@
           <h4>Дата створення: {{proposition.createDate}} </h4>
           <mat-card-title class="mat-h1">{{proposition.name}}</mat-card-title>
           <p class="mat-h4">{{proposition.description}}</p>
-          <p class="location-h1">Відстань від вашого місцезнаходження: 2 км</p>
+          <p class="location-h1">до вас: {{distanceTo(proposition)}} км</p>
         </div>
         <div>
           <agm-map [latitude]="proposition.location[0]"  [longitude]="proposition.location[1]">

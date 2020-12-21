@@ -50,12 +50,17 @@ export class RegistrationFormComponent implements OnInit {
     this.registrationForm.controls.email.disable();
     this.registrationForm.controls.phoneNumber.disable();
     this.registrationForm.controls.password.disable();
-    this.messageService.register(registrationData).subscribe(data => {
+    this.messageService.register(registrationData).subscribe(resp => {
+      const data = resp.body;
       sessionStorage.setItem('token', data.accessToken);
       console.log('user registered');
       this.router.navigate(['main-page']);
-    },
-      error => {
+    }, error => {
+      if (error.status === 409){
+        console.warn('REGISTRATION FAILED');
+        alert('Вказаний email вже зареєстровано в базі');
+        this.router.navigate(['/login']);
+      } else {
         console.warn('REGISTRATION FAILED');
         console.warn(error);
         this.registrationForm.controls.name.enable();
@@ -63,7 +68,8 @@ export class RegistrationFormComponent implements OnInit {
         this.registrationForm.controls.phoneNumber.enable();
         this.registrationForm.controls.email.enable();
         this.registrationForm.controls.password.enable();
-      });
+      }
+    });
   }
 
 
