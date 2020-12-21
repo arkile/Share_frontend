@@ -8,5 +8,7 @@ export class PropositionModel {
   location: [number, number];
   images: string;
   authorName: string;
+  authorEmail: string;
+  authorPhoneNumber: string;
   // authorPhoneNumber: string;
 }

@@ -4,6 +4,8 @@ import {ErrorStateMatcher} from '@angular/material/core';
 import {MessageService} from '../services/message-service';
 import {Router} from '@angular/router';
 import {NewPropositionModel} from '../models/new-proposition';
+import {GeoLocationService} from '../services/geoloc-service';
+import {getActiveOffset} from '@angular/material/datepicker/multi-year-view';
 
 export class NewErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -21,8 +23,7 @@ export class PropositionFormComponent implements OnInit {
 
   createForm: FormGroup;
   errorStateMatcher = new NewErrorStateMatcher();
-  lat = 50.408955;
-  lon = 30.549316;
+  locat;
 
   imageUrl: string | ArrayBuffer = 'https://via.placeholder.com/480x320?text=Add+your+image+here';
 
@@ -31,15 +32,27 @@ export class PropositionFormComponent implements OnInit {
   isUploading = false;
   file: File;
   fileName: string;
+  located = false;
 
 
-  constructor(private formBuilder: FormBuilder, private messageService: MessageService, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private messageService: MessageService,
+              private router: Router, private geoService: GeoLocationService) { }
 
   ngOnInit(): void {
     this.createForm = this.formBuilder.group({
       name: ['', Validators.required],
       description: ['', Validators.required]
     });
+    if (!this.geoService.defaultLocation){
+      const findLoc = this.geoService.findMe();
+      findLoc.then((success) => {
+        this.locat = [this.geoService.myLat, this.geoService.myLong];
+        this.located = true;
+      });
+    } else {
+      this.locat = [this.geoService.myLat, this.geoService.myLong];
+      this.located = true;
+    }
   }
 
   // tslint:disable-next-line:typedef
@@ -67,11 +80,12 @@ export class PropositionFormComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   createProposition() {
-    const loc = navigator.geolocation;
+    // const loc = navigator.geolocation;
+    console.log(this.locat);
     const createData = {
       name: this.createForm.get('name').value,
       description: this.createForm.get('description').value,
-      location: [this.lat, this.lon],
+      location: this.locat,
       images: this.imageUrl.toString()
     } as NewPropositionModel;
     this.createForm.controls.name.disable();
@@ -83,13 +97,13 @@ export class PropositionFormComponent implements OnInit {
         console.log('proposition created');
       }
     }, error => {
-      if (error.status === 403){
+      if (error.status === 403 || error.status === 401){
         alert('Невірний аутентифікаційний код. Спробуйте ще раз');
         this.messageService.logOut();
       } else {
         console.error(error.error + ', status: ' + error.status);
         alert('Сталася помилка. спробуйте пізніше');
-        this.messageService.logOut();
+        // this.messageService.logOut();
         console.warn('CREATING FAILED');
       }
       // this.createForm.controls.name.enable();
@@ -97,27 +111,27 @@ export class PropositionFormComponent implements OnInit {
       this.router.navigate(['main-page']);
     });
   }
-
-  // tslint:disable-next-line:typedef
-  private findMe() {
-    navigator.permissions.query(
-      {name: 'geolocation'}
-    ).then(permissionStatus => {
-      if (permissionStatus.state === 'granted'){
-        if (navigator.geolocation) {
-          // this.permissionGranted = true;
-          navigator.geolocation.getCurrentPosition((position) => {
-            this.lat = position.coords.latitude;
-            this.lon = position.coords.longitude;
-          });
-        } else {
-          alert('Geolocation is not supported by this browser.');
-        }
-      }
-      else{
-        // this.permissionGranted = false;
-      }
-    });
-  }
+  //
+  // // tslint:disable-next-line:typedef
+  // private findMe() {
+  //   navigator.permissions.query(
+  //     {name: 'geolocation'}
+  //   ).then(permissionStatus => {
+  //     if (permissionStatus.state === 'granted'){
+  //       if (navigator.geolocation) {
+  //         // this.permissionGranted = true;
+  //         navigator.geolocation.getCurrentPosition((position) => {
+  //           this.lat = position.coords.latitude;
+  //           this.lon = position.coords.longitude;
+  //         });
+  //       } else {
+  //         alert('Geolocation is not supported by this browser.');
+  //       }
+  //     }
+  //     else{
+  //       // this.permissionGranted = false;
+  //     }
+  //   });
+  // }
 
 }

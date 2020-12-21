@@ -4,8 +4,8 @@
       <div class="left-col-div">
         <img [src]="imageUrl">
         <div class="map-class">
-          <agm-map  [latitude]="lat"  [longitude]="lon">
-            <agm-marker [latitude]="lat" [longitude]="lon"></agm-marker>
+          <agm-map [latitude]="this.geoService.myLat"  [longitude]="this.geoService.myLong">
+            <agm-marker [latitude]="this.geoService.myLat" [longitude]="this.geoService.myLong"></agm-marker>
           </agm-map>
         </div>
       </div>

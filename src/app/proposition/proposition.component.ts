@@ -49,9 +49,14 @@ export class PropositionComponent implements OnInit {
           status: data.status,
           location: data.location,
           images: data.images,
-          authorName: data.authorName
+          authorName: data.authorName,
+          authorEmail: data.authorEmail,
+          authorPhoneNumber: data.authorPhoneNumber
         } as PropositionModel;
       }, error => {
+        if (error.status === 401){
+          this.messageService.logOut();
+        }
         if (error.status === 404){
           alert('Ця пропозиція більше не доступна');
           this.router.navigate(['/main-menu']);

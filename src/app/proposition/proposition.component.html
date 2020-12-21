@@ -4,43 +4,16 @@
 <!--  <p *ngIf="!(status == 1) && !(status == 2)">Статус: пропозиція недоступна для прийняття</p>-->
 </div>
 
-<!--<div class="whole_prop">-->
-<!--  <div>-->
-<!--    <mat-card class="view_prop_card">-->
-<!--      <img>-->
-<!--      <mat-card-header>-->
-<!--        <mat-card-title>{{proposition.name}}</mat-card-title>-->
-<!--        <mat-card-subtitle>Створено: {{proposition.createDate}}</mat-card-subtitle>-->
-<!--      </mat-card-header>-->
-<!--      <mat-card-content>-->
-<!--        <div class="container">-->
-<!--          <img mat-card-image src="https://cdn.shopify.com/s/files/1/0806/0141/products/KALA-LTP-MH-KIT_1024x1024.jpg?v=1571914470" alt="Photo of a proposition`s author">-->
-<!--          <div class="overlay">-->
-<!--            <div class="proposition-author">-->
-<!--              <div mat-card-avatar class="header-image"></div>-->
-<!--              <p>{{proposition.authorName}} </p>-->
-<!--            </div>-->
-<!--            <div class="text"> Контактна інформація: +380 (44) 255–70–42 </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <p> {{proposition.description}} </p>-->
-<!--        <div>-->
-<!--          <agm-map [latitude]="proposition.location[0]"  [longitude]="proposition.location[1]">-->
-<!--            <agm-marker [latitude]="proposition.location[0]" [longitude]="proposition.location[1]"></agm-marker>-->
-<!--          </agm-map>-->
-<!--        </div>-->
-<!--      </mat-card-content>-->
-<!--    </mat-card>-->
-<!--  </div>-->
-<!--</div>-->
-
 <div class="overall-view-div">
   <mat-grid-list class="whole_prop" cols="2">
 
     <mat-grid-tile [colspan]="1" class="left-column" >
       <div class="left-column-div">
         <img mat-card-image class="proposition-image" [src]="proposition.images" alt="Photo of a proposition`s author">
-        <p> {{proposition.description}} </p>
+        <div>
+          <h1 class="prop-name">{{proposition.name}}</h1>
+          <p style="margin-top: 5%"> {{proposition.description}} </p>
+        </div>
       </div>
     </mat-grid-tile>
 
@@ -52,13 +25,15 @@
             <h1 class="share-text">share</h1>
           </div>
           <div class="container">
-            <div mat-card-avatar class="header-image"></div>
-            <!--          <h1 class="mat-h1" >{{proposition.authorName}}</h1>-->
-            <h1 class="mat-h1" >{{proposition.authorName}}</h1>
+            <div class="user-share">
+              <div mat-card-avatar class="header-image"></div>
+              <!--          <h1 class="mat-h1" >{{proposition.authorName}}</h1>-->
+              <h1 class="mat-h1" >{{proposition.authorName}}</h1>
+            </div>
             <div class="overlay">
               <div class="text">
-                <p class="text-phone">Телефон: some number </p>
-                <p class="text-email">Email: some email </p>
+                <p class="text-phone">Телефон: +38{{proposition.authorPhoneNumber}} </p>
+                <p class="text-email">Email: {{proposition.authorEmail}} </p>
               </div>
             </div>
           </div>
@@ -69,7 +44,9 @@
             <agm-marker [latitude]="proposition.location[0]" [longitude]="proposition.location[1]"></agm-marker>
           </agm-map>
         </div>
-        <button mat-raised-button class="accept-button" (click)="acceptProposition()" color="primary">Мені це потрібно</button>
+        <div style="margin-top:5%; display: flex; align-items: stretch; width: 100%;">
+          <button style="margin-left: auto; margin-right: auto" mat-raised-button class="accept-button" (click)="acceptProposition()" color="primary">Мені це потрібно</button>
+        </div>
       </div>
     </mat-grid-tile>
   </mat-grid-list>

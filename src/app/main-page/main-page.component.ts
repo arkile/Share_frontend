@@ -17,23 +17,26 @@ export class MainPageComponent implements OnInit {
   propositions: PropositionModel[];
   listSize = 5;
   dataLoaded = false;
-  defaultLocation =  [50.3413014, 30.5962901];
-  location = this.defaultLocation;
+  location = this.geoService.defaultLocation;
   permissionGranted = false;
   myLat;
   myLong;
 
+
   constructor(private router: Router, private messageService: MessageService, private geoService: GeoLocationService) { }
 
   ngOnInit(): void {
-    this.findMe();
-    this.loadPropositions();
+    this.geoService.findMe().then(success => {
+
+      this.location = [this.geoService.myLat, this.geoService.myLong];
+      this.loadPropositions();
+    });
   }
 
   // tslint:disable-next-line:typedef
   distanceTo(prop: PropositionModel) {
     const loc1 = prop.location;
-    const loc2 = [this.myLat, this.myLong];
+    const loc2 = [this.location[0], this.location[1]];
     const d = this.geoService.haversineDistance(loc2, loc1);
     return d.toFixed();
   }
@@ -65,31 +68,7 @@ export class MainPageComponent implements OnInit {
     });
   }
 
-  private findMe(): void {
-    navigator.permissions.query(
-      {name: 'geolocation'}
-    ).then(permissionStatus => {
-      if (permissionStatus.state === 'granted' || permissionStatus.state === 'prompt'){
-        console.log('in cycle');
-        if (navigator.geolocation) {
-          this.permissionGranted = true;
-          navigator.geolocation.getCurrentPosition((position) => {
-            this.myLat = position.coords.latitude;
-            this.myLong = position.coords.longitude;
-            console.log(this.myLat + ', ' + this.myLong);
-          });
-        } else {
-          alert('Geolocation is not supported by this browser.');
-        }
-      }
-      else{
-        this.permissionGranted = false;
-        this.myLat = this.defaultLocation[0];
-        this.myLong = this.defaultLocation[1];
-      }
-    });
-    console.log(this.permissionGranted);
-  }
+
 
 
 

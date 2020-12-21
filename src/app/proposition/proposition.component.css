@@ -63,8 +63,9 @@
   float: left;
   position: relative;
   /*height: 300px;*/
-  /*max-height: 500px;*/
-  width: 80%;
+  max-height: 300px;
+  /*width: 80%;*/
+
 }
 
 .proposition-author{
@@ -77,11 +78,12 @@
 }
 
 .header-image {
-  background-image: url('https://telegra.ph/file/9fec62437a310388c6fd9.jpg');
+  background-image: url('https://telegra.ph/file/46adf6030f5e23232a486.jpg');
   background-size: cover;
   /*margin: 1% 5%;*/
   margin-top: 1px;
   margin-bottom: 5px;
+  margin-right: 8px;
 
 }
 
@@ -112,12 +114,14 @@
 .mat-h1{
   color: black;
   font-size: 150%;
+  text-transform: uppercase;
+  margin-top: 3px;
 }
 
 agm-map {
   height: 200px;
   width: 300px;
-  margin-bottom: .5px;
+  margin-bottom: 5px;
 }
 
 .map-container {
@@ -139,6 +143,7 @@ agm-map {
 
 .left-column {
   /*display: grid;*/
+  /*margin-top: 5%;*/
 }
 
 .left-column-div{
@@ -151,4 +156,9 @@ mat-grid-tile {
 
 .overall-view-div {
   width: 100%;
+}
+
+.prop-name{
+  text-transform: uppercase;
+  margin-top: 4%;
 }

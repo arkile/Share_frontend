@@ -39,12 +39,15 @@
 
 agm-map {
   height: 250px;
-  width: 100%;
+  /*width: 90%;*/
   min-width: 300px;
+  /*margin-left: 5%;*/
 }
 
 .map-class {
   margin-top: 2%;
+  width: 90%;
+  margin-left: 5%;
   float: right;
 }
 
@@ -52,5 +55,14 @@ agm-map {
   display: grid;
 }
 
-
+img{
+  margin-right: 20%;
+  margin-left: 5%;
+  margin-top: 5%;
+  float: left;
+  position: relative;
+  /*height: 300px;*/
+  /*max-height: 500px;*/
+  width: 90%;
+}
 

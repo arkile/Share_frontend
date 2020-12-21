@@ -15,7 +15,7 @@
         Введіть коректну адресу
       </mat-error>
       <mat-error *ngIf="registrationForm.get('email').hasError('required')">
-        Email is <strong>required</strong>
+        Email <strong>обов'язковий!</strong>
       </mat-error>
     </mat-form-field>
     <mat-form-field class="reg-form-field" appearance="standard">
@@ -31,7 +31,7 @@
         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
       <mat-error *ngIf="registrationForm.get('password').hasError('required')">
-        Password is <strong>required</strong>
+        Пароль <strong>обов'язковий!</strong>
       </mat-error>
     </mat-form-field>
     <button class="reg-button" mat-raised-button [disabled]="!registrationForm.valid" disabled type="submit" color="primary">Зареєструвати мене</button>

@@ -29,13 +29,12 @@
 }
 
 .proposition-card {
-
   height: 20%;
   box-shadow: 1px 1px 5px #3F51B5;
   cursor:pointer;
   margin-top: 4%;
-  padding-bottom: 5%;
-  max-height: 180px;
+  /*padding-bottom: 5%;*/
+  /*max-height: 180px;*/
 }
 .h4{
   font-size: 80%;
@@ -75,12 +74,13 @@
 
 .mat-card-components {
   /*margin: 1% 3% 1% 3%;*/
+  margin-top: 2%;
 }
 
 .mat-card-img{
   float: left;
   position: relative;
-  background: url("https://cdn.shopify.com/s/files/1/0806/0141/products/KALA-LTP-MH-KIT_1024x1024.jpg?v=1571914470") content-box no-repeat center center;
+  /*background: url("https://telegra.ph/file/cb6671be718ed69f8e0fc.jpg") content-box no-repeat center center;*/
   background-size: cover;
   height: 160px;
   width: 160px;
@@ -105,7 +105,11 @@ agm-map {
 }
 
 .header-image {
-  background-image: url('https://telegra.ph/file/e777c1528f4d7d595a6db.jpg');
+  background-image: url('https://telegra.ph/file/46adf6030f5e23232a486.jpg');
   background-size: cover;
+}
+
+mat-card-image {
+
 }
 
